@@ -2,9 +2,20 @@
 
 **PhishGuard** is a high-performance, professional-grade cybersecurity platform designed to detect and neutralize sophisticated phishing attempts using a hybrid approach of **Heuristic Triage** and **Machine Learning Analysis**.
 
-![Status](https://img.shields.io/badge/Status-v3.0_Stable-orange?style=for-the-badge)
-![ML Engine](https://img.shields.io/badge/Engine-Random_Forest_%2B_NLP-success?style=for-the-badge)
-![UI](https://img.shields.io/badge/UI-Premium_Glassmorphism-blueviolet?style=for-the-badge)
+---
+
+## Preview 
+
+1.
+![1](demo/1.png)
+
+2.  
+![2](demo/2.png)
+
+3.  
+![3](demo/3.png)
+
+---
 
 ## 🚀 Quick Start (Installation)
 
