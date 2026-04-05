@@ -10,7 +10,7 @@
 
 1.  **Clone & Setup**:
     ```bash
-    git clone https://github.com/your-repo/phishguard.git
+    git clone https://github.com/kushal-soni-official/PhishGuard.git
     cd phishguard
     python -m venv venv
     venv\Scripts\activate  # On Windows
