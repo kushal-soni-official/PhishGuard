@@ -1,0 +1,13 @@
+Flask
+Flask-SocketIO
+Flask-Cors
+scikit-learn
+pandas
+numpy
+nltk
+joblib
+requests
+beautifulsoup4
+email-validator
+dnspython
+pytest
