@@ -18,7 +18,9 @@ Before installing, ensure you have the following installed on your machine:
 *   **pip**: Python package manager for installing dependencies.
 
 **Major Libraries Used**:
-*   `Flask==3.0.0`: Powers the backend server and REST/WebSocket APIs.
+*   `Flask==3.0.0`: Powers the backend server and REST APIs.
+*   `flask-cors`: Handles Cross-Origin Resource Sharing.
+*   `flask-socketio`: Enables real-time communication for the dashboard.
 *   `scikit-learn==1.3.2` & `joblib==1.3.2`: Forms the core of the Machine Learning Engine (Random Forest).
 *   `nltk==3.8.1`: Natural Language Toolkit used for text preprocessing (Tokenization, Lemmatization, Stop-words removal).
 *   `dnspython` & `email-validator`: Ensures emails and headers are properly structurally evaluated.
@@ -82,6 +84,16 @@ If you only want to quickly check the body of an email or random suspicious text
     *   `0-30%`: Likely Safe.
     *   `31-60%`: Proceed with Caution.
     *   `60-100%`: Action Blocked (Phishing Detected).
+
+---
+
+### 💡 Pro Tip: How to Export .eml from Gmail
+To test the scanner with a real email from your Gmail inbox:
+1.  Open the email you want to analyze.
+2.  Click the **three vertical dots** (More) next to the "Reply" button.
+3.  Select **"Download message"**.
+4.  This will save a `.eml` file to your computer.
+5.  In PhishGuard, click **UPLOAD .EML** and select that file to run an automatic AI diagnostic!
 
 ---
 
