@@ -1,102 +1,125 @@
 # 🛡️ PhishGuard | AI-Driven Threat Intelligence
 
-**PhishGuard** is a high-performance, professional-grade cybersecurity platform designed to detect and neutralize sophisticated phishing attempts using a hybrid approach of **Heuristic Triage** and **Machine Learning Analysis**.
+**PhishGuard** is a high-performance, professional-grade cybersecurity platform designed to detect and neutralize sophisticated phishing attempts using a hybrid approach of **Heuristic Triage** and **Machine Learning Analysis**. 
+
+![Status](https://img.shields.io/badge/Status-v3.0_Stable-orange?style=for-the-badge)
+![ML Engine](https://img.shields.io/badge/Engine-Random_Forest_%2B_NLP-success?style=for-the-badge)
+![UI](https://img.shields.io/badge/UI-Premium_Glassmorphism-blueviolet?style=for-the-badge)
 
 ---
 
-## Preview 
+## 📖 Complete User Manual
 
-1.
-![1](demo/1.png)
+Welcome to **PhishGuard**! This section is designed to walk you step-by-step through setting up, configuring, and effectively using the platform.
 
-2.  
-![2](demo/2.png)
+### System Requirements & Dependencies
+Before installing, ensure you have the following installed on your machine:
+*   **Python 3.10 or higher**: Required for core execution.
+*   **pip**: Python package manager for installing dependencies.
 
-3.  
-![3](demo/3.png)
-
-4.  
-![4](demo/4.png)
+**Major Libraries Used**:
+*   `Flask==3.0.0`: Powers the backend server and REST/WebSocket APIs.
+*   `scikit-learn==1.3.2` & `joblib==1.3.2`: Forms the core of the Machine Learning Engine (Random Forest).
+*   `nltk==3.8.1`: Natural Language Toolkit used for text preprocessing (Tokenization, Lemmatization, Stop-words removal).
+*   `dnspython` & `email-validator`: Ensures emails and headers are properly structurally evaluated.
 
 ---
 
-## 🚀 Quick Start (Installation)
-
-1.  **Clone & Setup**:
+### Step 1: Installation & Setup
+1.  **Clone the Repository**:
     ```bash
-    git clone https://github.com/kushal-soni-official/PhishGuard.git
+    git clone https://github.com/your-repo/phishguard.git
     cd phishguard
-    python -m venv venv
-    venv\Scripts\activate  # On Windows
     ```
-2.  **Install Essentials**:
+2.  **Create a Virtual Environment**:
+    This isolates dependencies so they do not conflict with your system.
+    ```bash
+    python -m venv venv
+    ```
+    *Activate it:*
+    - **Windows**: `venv\Scripts\activate`
+    - **Linux/Mac**: `source venv/bin/activate`
+3.  **Install the Required Tooling**:
     ```bash
     pip install -r requirements.txt
     ```
-3.  **Launch Platform**:
+
+### Step 2: Running the Project
+1.  **Start the Server**:
     ```bash
     python app.py
     ```
-    Navigate to `http://localhost:5000` to access the dashboard.
+2.  **Access the Dashboard**:
+    Open a modern web browser and navigate to `http://localhost:5000`. You will see the PhishGuard application interface.
 
-## ✨ Usage Guide
-
-PhishGuard is designed to be simple and intuitive. Follow these steps to start scanning for threats:
-
-### 1. The Real-Time Dashboard
-The dashboard provides live telemetry of threats. You can track:
-*   **Total Scanned**: Cumulative count of analysis requests.
-*   **Phishing Detected**: Number of verified threats blocked.
-*   **Safe Artifacts**: Benign emails that passed the check.
-*   **Threat Intensity**: A dynamic chart showing attack patterns over time.
-
-### 2. Performing a Scan
-Navigate to the **Scanner** tab via the sidebar:
-1.  **Paste Email Content**: Copy the raw content or EML source of a suspicious email into the analyzer field.
-2.  **Run AI Diagnostics**: Click the `RUN AI DIAGNOSTICS` button to begin the analysis.
-3.  **Analyze Results**: Review the **Behavioral Artifacts** (e.g., suspicious keywords, entropy level, or sender mismatch).
-
-### 3. Understanding the Risk Meter
-*   **0-30% (SAFE)**: Low risk, likely a benign communication.
-*   **31-70% (SUSPICIOUS)**: Moderate risk, requires manual review.
-*   **71-100% (CRITICAL)**: High risk phishing attempt. **Avoid clicking any links!**
+> **Note on NLTK Downloads**: The first time you execute a scan or start the app, PhishGuard might automatically download `stopwords` and `wordnet` corpora from NLTK. This is normal and takes only a few seconds.
 
 ---
 
-## 🧠 AI & Detection Engine
-PhishGuard uses a multi-layered detection strategy:
-*   **Heuristic Analysis**: Checks for known phishing patterns and sender discrepancies.
-*   **Machine Learning**: A **Random Forest** model trained on a massive dataset of phishing and benign emails.
-*   **NLP Processing**: Analyzes language semantics to detect urgency, fear-mongering, and deceptive tactics.
+### Step 3: How to Use the Email Scanner
+PhishGuard's scanner accepts **two main formats** of inputs in the "Email Analyzer" tab:
 
-## 📂 Project Structure
+#### Mode A: Pasting Raw EML (With Headers) - Recommended 
+If you have access to the raw email source (including `Subject:`, `From:`, `To:`, etc.):
+1.  Copy the entire raw text block.
+2.  Paste it into the terminal box on the **Email Analyzer** page.
+3.  Click `RUN AI DIAGNOSTICS`. 
+4.  *Benefit: This allows the engine to check for Authentication anomalies (SPF/DKIM/DMARC) as well as Behavioral Text features.*
+
+#### Mode B: Pasting Plain Text (Email Body Only)
+If you only want to quickly check the body of an email or random suspicious text:
+1.  Just copy the text content.
+2.  Paste it into the terminal box.
+3.  Click `RUN AI DIAGNOSTICS`.
+4.  *Benefit: The system is perfectly adapted for this. It will safely ignore missing SMTP headers so it won't wrongly penalize your score, and relies entirely on Deep Text NLP patterns and URL heuristics.*
+
+---
+
+### Step 4: Understanding The UI and Dashboards
+*   **The Dashboard Tab**: Shows your total scanned emails, threats blocked, and safe artifacts verified.
+*   **ML Engine Indicator**: In the bottom left corner, you will see `ML Engine: ACTIVE`. If for any reason your `.pkl` model files (Random Forest models) go missing or fail to load, the system degrades safely to `OFFLINE (Heuristic)`, using fallback rules to keep you safe.
+*   **Risk Meter**: 
+    *   `0-30%`: Likely Safe.
+    *   `31-60%`: Proceed with Caution.
+    *   `60-100%`: Action Blocked (Phishing Detected).
+
+---
+
+## 🛠️ Troubleshooting & Solutions
+
+*   **Error: "ANALYSIS FAILED" in GUI**
+    *   **Solution**: Ensure you actually pasted text into the analyzer. Empty inputs are caught and rejected. Follow the GUI tip provided in the error box.
+*   **Error: NLTK Resource Not Found**
+    *   **Solution**: Since version 3.0, the script (`nlp_processor.py`) attempts to safely auto-download missing models. If it fails, run python and execute: `import nltk; nltk.download('stopwords'); nltk.download('wordnet')`.
+*   **Warning: "Model files not found" in Server Console**
+    *   **Solution**: You are missing the pretrained `rf_model.pkl` and `tfidf_vectorizer.pkl` files inside the `models/` directory. Use `download_data.py` or `train_model.py` to generate them. The application will continue functioning by dynamically switching to a Rule-Based Heuristic engine.
+*   **Port 5000 Already in Use**
+    *   **Solution**: Change `port=5000` to `port=8080` in `app.py`.
+
+---
+
+## 📂 Project Architecture
 
 ```text
 phishguard/
 ├── backend/                # Core Application Logic
-│   ├── models/             # ML Implementation & Feature Extraction
-│   ├── routes/             # RESTful API Endpoints
-│   ├── static/             # Frontend Assets (Glassmorphism UI)
-│   ├── templates/          # HTML5 Templates
-│   └── utils/              # NLP & Text Utilities
+│   ├── models/             # ML Integration (Feature mapping & the Random Forest bridge)
+│   ├── routes/             # RESTful APIs (Handles JSON communication to the frontend)
+│   ├── static/             # Frontend Assets (Glass UI, Advanced JS, Style Tooling)
+│   ├── templates/          # HTML5 User Interfaces
+│   └── utils/              # NLP & Text Utilities (Parsing & Safety fallbacks)
 ├── dataset/                # Training Data for the AI Engine
 ├── models/                 # Pre-trained ML weights (.pkl)
 ├── tests/                  # Unit & Integration Tests
-└── app.py                  # Server Entry Point
+└── app.py                  # Server/Application Entry Point
 ```
 
-## 🛠️ Tech Stack
-
-- **Frontend**: Vanilla JS (ES6+), CSS3 (Glassmorphism), Chart.js
-- **Backend**: Python 3.10+, Flask, Socket.io
-- **AI/ML**: Scikit-Learn, NLTK, NumPy, Joblib
-
-## 🔮 Roadmap
-
-1.  **🔗 Deep-Link Reputation**: Integration with VirusTotal for URL analysis.
-2.  **🤖 Transformer Integration**: Upgrading to **BERT** for deep semantic understanding.
-3.  **🦊 Browser Extension Sync**: Real-time inbox scanning via browser plugin.
-4.  **🔒 Automated Quarantine**: Integrating with IMAP/SMTP to move high-risk emails.
+## 🔮 Future Roadmap
+1.  **Transformer Integration**: Upgrading to **BERT** for contextual embeddings.
+2.  **Automated Quarantine**: Plug into live IMAP/SMTP nodes to push directly to junk.
+3.  **Browser Addon Sync**: On-the-fly DOM scanning in browser interfaces.
 
 ---
-*Developed by the PhishGuard Security Team • Protecting the Digital Frontier*
+<div align="center">
+    <i>Developed by - Kushal Soni • Protecting the Digital Frontier</i>
+</div>
