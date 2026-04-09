@@ -8,6 +8,19 @@
 
 ---
 
+## 🪄 Preview
+
+![1](demo/1.png)
+
+![2](demo/2.png)
+
+![3](demo/3.png)
+
+![4](demo/4.png)
+
+---
+
+
 ## 📖 Complete User Manual
 
 Welcome to **PhishGuard**! This section is designed to walk you step-by-step through setting up, configuring, and effectively using the platform.
