@@ -141,5 +141,5 @@ phishguard/
 
 ---
 <div align="center">
-    <i>Developed by - Kushal Soni • Protecting the Digital Frontier</i>
+    <i>Developed by - Kushal Soni </i>
 </div>
