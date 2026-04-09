@@ -45,6 +45,12 @@ Before installing, ensure you have the following installed on your machine:
     ```bash
     pip install -r requirements.txt
     ```
+4.  **Initialize the Massive ML Dataset (Optional but Recommended)**:
+    PhishGuard includes a procedural data engine that can generate thousands of diverse training samples to maximize the Random Forest accuracy.
+    ```bash
+    python dataset/generate_dataset.py
+    ```
+    This auto-creates `phishing_data.csv` with 15,000 highly-varied email structures. You can then train the model accurately!
 
 ### Step 2: Running the Project
 1.  **Start the Server**:
@@ -99,12 +105,14 @@ To test the scanner with a real email from your Gmail inbox:
 
 ## 🛠️ Troubleshooting & Solutions
 
+*   **Error: "ML ENGINE DEGRADED" / "idf vector not fitted"**
+    *   **Solution**: This happens if the `tfidf_vectorizer.pkl` lacks vocabulary or the model files are corrupted. Thanks to PhishGuard's Interactive Fallback UI, you don't even need to touch the terminal! When this error appears on your dashboard, simply click **Retrain ML Model** to automatically fix the corrupted models, or click **Use Rule-Based Fallback** to skip ML and use the heuristic engine.
 *   **Error: "ANALYSIS FAILED" in GUI**
-    *   **Solution**: Ensure you actually pasted text into the analyzer. Empty inputs are caught and rejected. Follow the GUI tip provided in the error box.
+    *   **Solution**: Ensure you actually pasted text into the analyzer. Empty inputs are caught and rejected.
 *   **Error: NLTK Resource Not Found**
     *   **Solution**: Since version 3.0, the script (`nlp_processor.py`) attempts to safely auto-download missing models. If it fails, run python and execute: `import nltk; nltk.download('stopwords'); nltk.download('wordnet')`.
 *   **Warning: "Model files not found" in Server Console**
-    *   **Solution**: You are missing the pretrained `rf_model.pkl` and `tfidf_vectorizer.pkl` files inside the `models/` directory. Use `download_data.py` or `train_model.py` to generate them. The application will continue functioning by dynamically switching to a Rule-Based Heuristic engine.
+    *   **Solution**: You are missing the pretrained `rf_model.pkl` and `tfidf_vectorizer.pkl` files inside the `models/` directory. Use `dataset/generate_dataset.py` followed by `backend/models/train_model.py` to generate them. The application will continue functioning by dynamically switching to a Rule-Based Heuristic engine.
 *   **Port 5000 Already in Use**
     *   **Solution**: Change `port=5000` to `port=8080` in `app.py`.
 
